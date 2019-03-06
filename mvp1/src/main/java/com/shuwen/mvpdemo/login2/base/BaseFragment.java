@@ -16,11 +16,11 @@ public abstract class BaseFragment<V extends IBaseView,T extends BasePresenter<V
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        initPresenter();
+        mPresenter = createPresenter();
         mPresenter.attachView((V)this);
     }
-    
-    public abstract void initPresenter();
+
+    public abstract T createPresenter();
 
     @Override
     public void onDestroy() {

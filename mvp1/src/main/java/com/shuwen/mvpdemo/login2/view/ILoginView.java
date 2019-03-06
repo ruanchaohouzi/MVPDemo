@@ -9,7 +9,11 @@ import com.shuwen.mvpdemo.login2.model.UserInfo;
 
 public interface ILoginView extends IBaseView {
 
-    void LoginSuccess(UserInfo userInfo);
+    void loginSuccess(UserInfo userInfo);
 
-    void LoginFail(String err);
+    void loginFail(String err);
+
+    void onUserInfoSuccess(UserInfo userInfo);
+
+    void onUserInfoErr();
 }

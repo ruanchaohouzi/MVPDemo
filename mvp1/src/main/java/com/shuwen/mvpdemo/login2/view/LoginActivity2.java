@@ -58,14 +58,14 @@ public class LoginActivity2 extends BaseActivity<ILoginView,LoginPresenter> impl
     }
 
     @Override
-    public void LoginSuccess(UserInfo userInfo) {
+    public void loginSuccess(UserInfo userInfo) {
         //做一些UI的更新操作。。。。。。
         //..........
         Toast.makeText(LoginActivity2.this, "登录成功",Toast.LENGTH_LONG).show();
     }
 
     @Override
-    public void LoginFail(String err) {
+    public void loginFail(String err) {
         //做一些UI的更新操作。。。。。。
         //..........
         Toast.makeText(LoginActivity2.this, "登录失败：" + err, Toast.LENGTH_LONG).show();

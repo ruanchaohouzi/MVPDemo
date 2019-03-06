@@ -8,8 +8,9 @@ import com.shuwen.mvpdemo.login2.model.LoginModel;
 import com.shuwen.mvpdemo.login2.model.UserInfo;
 import com.shuwen.mvpdemo.login2.view.ILoginView;
 
-import java.io.IOException;
 import java.util.HashMap;
+
+import io.reactivex.observers.DisposableObserver;
 
 /**
  * Created by ruanchao on 2018/4/19.
@@ -35,13 +36,36 @@ public class LoginPresenter extends BasePresenter<ILoginView> {
             @Override
             public void onSuccess(UserInfo result) {
                 if (isViewAttached()){
-
-                    viewRef.get().LoginSuccess(result);
+                    viewRef.get().loginSuccess(result);
                 }
             }
 
             @Override
             public void onFail(Exception e) {
+
+            }
+        });
+    }
+
+    /**
+     * 采取Rxjava retrofit架构
+     * @param userId
+     */
+    public void getUserInfo(final String userId){
+
+        addSubscription(mLoginModel.getUserInfo(userId), new DisposableObserver<UserInfo>() {
+            @Override
+            public void onNext(UserInfo userInfo) {
+                viewRef.get().onUserInfoSuccess(userInfo);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                viewRef.get().onUserInfoErr();
+            }
+
+            @Override
+            public void onComplete() {
 
             }
         });
